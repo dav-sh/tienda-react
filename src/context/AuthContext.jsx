@@ -58,7 +58,11 @@ export const AuthProvider = ({ children }) => {
         setToken(newToken);
 
         // Redirige a la página de roles
-        navigate("/usuarios");
+        if(parseInt(user.rol_idRol) === 1){
+          navigate("/usuarios");
+        }else if(parseInt(user.rol_idRol) === 2){
+          navigate("/");
+        }
       } else {
         console.log("No se puedo ingresar con credenciales");
         alert("Verifique sus credenciales");

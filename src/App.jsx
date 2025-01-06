@@ -6,14 +6,16 @@ import { AuthProvider } from "./context/AuthContext";
 import ObtenerUsuarios from "./pages/usuarios/ObtenerUsuarios";
 import ProtectedRoute from "./ProtectedRoute";
 import ActualizarUsuario from "./pages/usuarios/ActualizarUsuario";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+        <Navbar />
         <Routes>
-          {/* Operador */}
-          <Route element={<ProtectedRoute />}>
+          {/* Rutas protegidas solo para OPERADOR */}
+          <Route element={<ProtectedRoute allowedRoles={["OPERADOR"]} />}>
             <Route path="/usuarios" element={<ObtenerUsuarios />} />
             <Route path="/productos/:id" element={<h1>Productos</h1>} />
             <Route path="/estado" element={<h1>Productos</h1>} />
@@ -27,14 +29,19 @@ function App() {
             <Route path="/usuarios/:id" element={<h1>update usuarios</h1>} />
             <Route path="/roles" element={<h1>roles</h1>} />
           </Route>
-          {/* Operador y Usuario*/}
-          <Route element={<ProtectedRoute />}>
+
+          {/* Rutas protegidas para OPERADOR y USUARIO */}
+          <Route
+            element={<ProtectedRoute allowedRoles={["OPERADOR", "USUARIO"]} />}
+          >
             <Route path="/categoria" element={<h1>categoria</h1>} />
             <Route path="/productos" element={<h1>Productos</h1>} />
             <Route path="/ordenes" element={<h1>ordenes</h1>} />
             <Route path="/ordenes/:id" element={<h1>update ordenes</h1>} />
+            <Route path="/" element={<h1>Hello World</h1>} />
           </Route>
-          <Route path="/" element={<h1>Hello World</h1>} />
+
+          {/* Rutas públicas */}
           <Route path="/login" element={<LoginPage />} />
         </Routes>
       </AuthProvider>
