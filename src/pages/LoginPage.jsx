@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 import {useForm} from 'react-hook-form'
 function LoginPage() {
 
-  const { login } = useAuth(); // Obtiene la función setToken del contexto
+  const { login } = useContext(AuthContext); // Obtiene la función setToken del contexto
   
 
   const [formData, setFormData] = useState({

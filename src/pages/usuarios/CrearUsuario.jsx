@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../../context/AuthContext";
 import axios from "../../api/axios";
+import { useNavigate } from "react-router-dom";
 
 const RegistroUsuario = () => {
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(null);
   const [roles, setRoles] = useState([]);
-
+  const navigate = useNavigate();  
   const [formData, setFormData] = useState({
     rol_idRol: 2,
     estados_idEstados: 1,
@@ -30,13 +30,6 @@ const RegistroUsuario = () => {
     e.preventDefault();
     console.log("Datos enviados:", formData);
     try {
-      // const response = await fetch("http://localhost:3000/api/usuarios", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" ,
-      //       "Authorization": `Bearer ${token}`
-      //   },
-      //   body: JSON.stringify(formData),
-      // });
       const response = await axios.post("/usuarios", formData, {
         headers: {
           "Content-Type": "application/json",
@@ -44,37 +37,36 @@ const RegistroUsuario = () => {
         },
       });
 
-      console.log("Usuario registrado con exito", response.data);
+      console.log("Usuario registrado con éxito", response.data);
+      alert("Usuario registrado con éxito", response.data)
+      navigate("/usuarios"); 
     } catch (error) {
-      console.error("Error al iniciar sesión:", error);
+      console.error("Error al registrar el usuario:", error);
     }
   };
 
-
-  //Cuando se crea el componente llamaos a esta funcion
+  // Cuando se crea el componente, llamamos a esta función
   useEffect(() => {
     const tokenLocal = window.localStorage.getItem("token");
-    console.log(`Token recuperado de localStorage: ${tokenLocal}`)
-    setToken(tokenLocal)
+    console.log(`Token recuperado de localStorage: ${tokenLocal}`);
+    setToken(tokenLocal);
+
     const fetchRoles = async () => {
-        try {
-        const response = await axios.get("/roles",{
-          Authorization: {
-            token: `Bearer ${tokenLocal}`
-          }
+      try {
+        const rolesResponse = await axios.get("/roles", {
+          headers: {
+            Authorization: `Bearer ${tokenLocal}`,
+          },
         });
-        const data = await response.data
-        setRoles(data); // Suponiendo que la respuesta es un array de roles
-        console.log(data+
-          "Roles"
-        );
+        setRoles(rolesResponse.data); // Suponiendo que la respuesta es un array de roles
+        console.log("Roles:", rolesResponse.data);
       } catch (error) {
         console.error("Error al obtener los roles:", error);
       }
     };
 
     fetchRoles();
-  }, []); //Se sigue ejecutando hasta que token ready este listo y no sea false
+  }, []); // Solo se ejecuta una vez al montar el componente
 
   return (
     <form onSubmit={handleSubmit}>
@@ -128,6 +120,24 @@ const RegistroUsuario = () => {
           required
         />
       </label>
+
+      {/* Agregando el selector de roles */}
+      <label>
+        Rol:
+        <select
+          name="rol_idRol"
+          value={formData.rol_idRol}
+          onChange={handleChange}
+          required
+        >
+          {roles.map((role) => (
+            <option key={role.idRol} value={role.idRol}>
+              {role.nombre}
+            </option>
+          ))}
+        </select>
+      </label>
+
       <button type="submit">Registrar</button>
     </form>
   );

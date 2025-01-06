@@ -1,40 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { useAuth } from "../../context/AuthContext";
-import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "../../api/axios";
+import { AuthContext } from "../../context/AuthContext";
 const GetUsuarios = () => {
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(null);
   const [usuarios, setUsuarios] = useState([]);
-  const [formData, setFormData] = useState({
-    rol_idRol: 2,
-    estados_idEstados: 1,
-    correo_electronico: "",
-    nombre_completo: "",
-    password: "",
-    telefono: "",
-    fecha_nacimiento: "",
-    fecha_creacion: new Date().toISOString(),
-    clientes_idClientes: 1,
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
+  const navigate = useNavigate()
   //Cuando se crea el componente llamaos a esta funcion
+
+  const handleAction=()=>{
+    navigate('/usuarios/registrar')
+  }
+
   useEffect(() => {
     const fetchUsuarios = async () => {
       console.log("GET usuarios");
       const tokenLocal = window.localStorage.getItem("token");
-      console.log(`Token recuperado de localStorage: ${tokenLocal}`)
-      setToken(tokenLocal)
-      
+      console.log(`Token recuperado de localStorage: ${tokenLocal}`);
+      setToken(tokenLocal);
+
       try {
-        
-        const response = await axios.get("http://localhost:3000/api/usuarios", {
+        const response = await axios.get("/usuarios", {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${tokenLocal}`,
@@ -49,15 +35,19 @@ const GetUsuarios = () => {
     };
 
     fetchUsuarios();
-  }, [token]); //Se sigue ejecutando hasta que token ready este listo y no sea false
+  }, []); //Se sigue ejecutando hasta que token ready este listo y no sea false
 
   return (
     <div>
       <h1>Lista de Usuarios</h1>
-      <ul>
+      <button onClick={handleAction}>Nuevo Usuario</button>
+      <ul id={window.localStorage.getItem("userId")}>
         {usuarios.map((usuario) => (
           <li key={usuario.idUsuarios}>
             {usuario.nombre_completo} - {usuario.correo_electronico}
+            <Link to={`/usuario/${usuario.idUsuarios}`} state={{ usuario }}>
+              <button>Editar</button>
+            </Link>
           </li>
         ))}
       </ul>
