@@ -4,12 +4,17 @@ import LoginPage from "./pages/LoginPage";
 import CrearUsuario from "./pages/usuarios/CrearUsuario";
 import { AuthProvider } from "./context/AuthContext";
 import ObtenerUsuarios from "./pages/usuarios/ObtenerUsuarios";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
         <Routes>
+          <Route element={ <ProtectedRoute/> }>
+
+          </Route>
+
           <Route path="/" element={<h1>Hello World</h1>} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/usuarios" element={<ObtenerUsuarios />} />

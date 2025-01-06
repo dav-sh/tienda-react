@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import axios from "axios";
+import axios from "../../api/axios";
 
 const RegistroUsuario = () => {
   const [token, setToken] = useState(null)
   const [roles, setRoles] = useState([]);
 
-  console.log(token + " Hola este token es de register");
   const [formData, setFormData] = useState({
     rol_idRol: 2,
     estados_idEstados: 1,
@@ -54,7 +53,7 @@ const RegistroUsuario = () => {
 
   //Cuando se crea el componente llamaos a esta funcion
   useEffect(() => {
-    const tokenLocal = windows.localStorage.getItem("token");
+    const tokenLocal = window.localStorage.getItem("token");
     console.log(`Token recuperado de localStorage: ${tokenLocal}`)
     setToken(tokenLocal)
     const fetchRoles = async () => {
@@ -64,9 +63,11 @@ const RegistroUsuario = () => {
             token: `Bearer ${tokenLocal}`
           }
         });
-        const data = await response.json();
+        const data = await response.data
         setRoles(data); // Suponiendo que la respuesta es un array de roles
-        console.log(data);
+        console.log(data+
+          "Roles"
+        );
       } catch (error) {
         console.error("Error al obtener los roles:", error);
       }

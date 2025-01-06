@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../api/axios";
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom"; // Si estás usando React Router
 
@@ -25,18 +25,19 @@ export const AuthProvider = ({ children }) => {
       //   headers: { "Content-Type": "application/json" },
       //   body: JSON.stringify(credentials),
       // });
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/login",
+      const response = await axios.post("/auth/login",
         credentials
       );
 
       if (response.status === 200) {
         const newToken = response.data.token; // Suponiendo que la API devuelve el token en 'token'
+        const user = response.data.user; // Suponiendo que la API devuelve el token en 'token'
         console.log("API Response:", response.data);
         console.log("Token guardado en localStorage:", newToken);
 
         // Guarda el token en localStorage
         window.localStorage.setItem("token", newToken);
+        window.localStorage.setItem("user", user);
 
         // Actualiza el estado del token
         setToken(newToken);
