@@ -9,6 +9,8 @@ import ActualizarUsuario from "./pages/usuarios/ActualizarUsuario";
 import Navbar from "./components/Navbar";
 import HomeUsuario from "./pages/HomeUsuario";
 import GetProductos from "./pages/Productos/ObtenerProductos";
+import RegistroProducto from "./pages/Productos/CrearProducto";
+import ActualizarProducto from "./pages/Productos/ActualizarProducto";
 
 function App() {
   return (
@@ -19,7 +21,8 @@ function App() {
           {/* Rutas protegidas solo para OPERADOR */}
           <Route element={<ProtectedRoute allowedRoles={["OPERADOR"]} />}>
             <Route path="/usuarios" element={<ObtenerUsuarios />} />
-            <Route path="/productos/:id" element={<h1>Productos</h1>} />
+            <Route path="/productos/:id" element={<ActualizarProducto/>} />
+            <Route path="/productos/registrar" element={<RegistroProducto/>} />
             <Route path="/estado" element={<h1>Productos</h1>} />
             <Route path="/estado/:id" element={<h1>Productos</h1>} />
             <Route path="/clientes" element={<h1>Clientes</h1>} />
