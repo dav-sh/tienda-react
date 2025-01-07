@@ -14,6 +14,7 @@ import ActualizarProducto from "./pages/Productos/ActualizarProducto";
 import GetClientes from "./pages/clientes/ObtenerClientes";
 import RegistroCliente from "./pages/clientes/CrearCliente";
 import ActualizarCliente from "./pages/clientes/ActualizarCliente";
+import GetRoles from "./pages/roles/ObtenerRoles";
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
             <Route path="/usuarios/registrar" element={<CrearUsuario />} />
             <Route path="/usuarios" element={<h1>usuarios</h1>} />
             <Route path="/usuarios/:id" element={<h1>update usuarios</h1>} />
-            <Route path="/roles" element={<h1>roles</h1>} />
+            <Route path="/roles" element={<GetRoles/>} />
           </Route>
 
           {/* Rutas protegidas para OPERADOR y USUARIO */}
