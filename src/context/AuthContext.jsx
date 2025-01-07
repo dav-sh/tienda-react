@@ -11,15 +11,11 @@ export const AuthProvider = ({ children }) => {
 
   // Función para obtener el token del localStorage al cargar la aplicación
   useEffect(() => {
-    
-      
-        const cookies = Cookies.get();
-        if (cookies.token) {
-          setToken(cookies.token);
-          console.log("Token recuperado de cookies: " + cookies.token);
-        }
-  
-  
+    const cookies = Cookies.get();
+    if (cookies.token) {
+      setToken(cookies.token);
+      console.log("Token recuperado de cookies: " + cookies.token);
+    }
   }, []);
 
   // Función para iniciar sesión
@@ -35,7 +31,7 @@ export const AuthProvider = ({ children }) => {
       if (response.status === 200) {
         const newToken = response.data.token;
         const user = response.data.user;
-        
+
         console.log("Token guardado en localStorage:", newToken);
         // const usuario = {
         //   clientes_idClientes: user.clientes_idClientes,
@@ -52,16 +48,16 @@ export const AuthProvider = ({ children }) => {
         window.localStorage.setItem("userId", user.idUsuarios);
         window.localStorage.setItem("role_idRol", user.rol_idRol);
         window.localStorage.setItem("nombre", user.nombre_completo);
-        console.log('Estan en local')
+        console.log("Estan en local");
         // window.localStorage.setItem("user", usuario);
 
         // Actualiza el estado del token
         setToken(newToken);
 
         // Redirige a la página de roles
-        if(parseInt(user.rol_idRol) === 1){
+        if (parseInt(user.rol_idRol) === 1) {
           navigate("/usuarios");
-        }else if(parseInt(user.rol_idRol) === 2){
+        } else if (parseInt(user.rol_idRol) === 2) {
           navigate("/");
         }
       } else {
@@ -88,7 +84,10 @@ export const AuthProvider = ({ children }) => {
   // Función para cerrar sesión
   const logout = () => {
     // Elimina el token del localStorage
-    localStorage.removeItem("token");
+    indow.localStorage.removeItem("token", newToken);
+    window.localStorage.removeItem("userId", user.idUsuarios);
+    window.localStorage.removeItem("role_idRol", user.rol_idRol);
+    window.localStorage.removeItem("nombre", user.nombre_completo);
 
     // Actualiza el estado del token
     setToken(null);
