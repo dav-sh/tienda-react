@@ -11,6 +11,9 @@ import HomeUsuario from "./pages/HomeUsuario";
 import GetProductos from "./pages/Productos/ObtenerProductos";
 import RegistroProducto from "./pages/Productos/CrearProducto";
 import ActualizarProducto from "./pages/Productos/ActualizarProducto";
+import GetClientes from "./pages/clientes/ObtenerClientes";
+import RegistroCliente from "./pages/clientes/CrearCliente";
+import ActualizarCliente from "./pages/clientes/ActualizarCliente";
 
 function App() {
   return (
@@ -25,8 +28,9 @@ function App() {
             <Route path="/productos/registrar" element={<RegistroProducto/>} />
             <Route path="/estado" element={<h1>Productos</h1>} />
             <Route path="/estado/:id" element={<h1>Productos</h1>} />
-            <Route path="/clientes" element={<h1>Clientes</h1>} />
-            <Route path="/clientes/:id" element={<h1>update Clientes</h1>} />
+            <Route path="/clientes" element={<GetClientes/>} />
+            <Route path="/clientes/registrar" element={<RegistroCliente/>} />
+            <Route path="/cliente/:id" element={<ActualizarCliente/>} />
             <Route path="/categoria/:id" element={<h1>update categoria</h1>} />
             <Route path="/usuario/:id" element={<ActualizarUsuario />} />
             <Route path="/usuarios/registrar" element={<CrearUsuario />} />
