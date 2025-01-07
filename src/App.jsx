@@ -15,6 +15,9 @@ import GetClientes from "./pages/clientes/ObtenerClientes";
 import RegistroCliente from "./pages/clientes/CrearCliente";
 import ActualizarCliente from "./pages/clientes/ActualizarCliente";
 import GetRoles from "./pages/roles/ObtenerRoles";
+import GetCategorias from "./pages/categorias/ObtenerCategorias";
+import CrearCategoria from "./pages/categorias/CrearCategoria";
+import ActualizarCategoria from "./pages/categorias/ActualizarCategoria";
 
 function App() {
   return (
@@ -32,7 +35,8 @@ function App() {
             <Route path="/clientes" element={<GetClientes/>} />
             <Route path="/clientes/registrar" element={<RegistroCliente/>} />
             <Route path="/cliente/:id" element={<ActualizarCliente/>} />
-            <Route path="/categoria/:id" element={<h1>update categoria</h1>} />
+            <Route path="/categoria/registrar" element={<CrearCategoria/>} />
+            <Route path="/categoria/:id" element={<ActualizarCategoria/>} />
             <Route path="/usuario/:id" element={<ActualizarUsuario />} />
             <Route path="/usuarios/registrar" element={<CrearUsuario />} />
             <Route path="/usuarios" element={<h1>usuarios</h1>} />
@@ -44,7 +48,7 @@ function App() {
           <Route
             element={<ProtectedRoute allowedRoles={["OPERADOR", "USUARIO"]} />}
           >
-            <Route path="/categoria" element={<h1>categoria</h1>} />
+            <Route path="/categoria" element={<GetCategorias/>} />
             <Route path="/productos" element={<GetProductos />} />
             <Route path="/ordenes" element={<h1>ordenes</h1>} />
             <Route path="/ordenes/:id" element={<h1>update ordenes</h1>} />
