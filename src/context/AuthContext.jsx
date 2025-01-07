@@ -52,6 +52,7 @@ export const AuthProvider = ({ children }) => {
         window.localStorage.setItem("userId", user.idUsuarios);
         window.localStorage.setItem("role_idRol", user.rol_idRol);
         window.localStorage.setItem("nombre", user.nombre_completo);
+        console.log('Estan en local')
         // window.localStorage.setItem("user", usuario);
 
         // Actualiza el estado del token

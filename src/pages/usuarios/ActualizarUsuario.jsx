@@ -85,52 +85,76 @@ const ActualizarUsuario = () => {
   };
 
   return (
-    <div>
-      <h1>Actualizar Usuario</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nombre Completo:</label>
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold text-blue-500 mb-4">Actualizar Usuario</h1>
+      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">
+            Nombre Completo:
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="nombre"
             type="text"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
           />
         </div>
-        <div>
-          <label>Email:</label>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+            Email:
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div>
-          <label>Contraseña:</label>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+            Contraseña:
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div>
-          <label>Teléfono:</label>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="telefono">
+            Teléfono:
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="telefono"
             type="text"
             value={telefono}
             onChange={(e) => setTelefono(e.target.value)}
           />
         </div>
-        <div>
-          <label>Fecha de Nacimiento:</label>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fechaNacimiento">
+            Fecha de Nacimiento:
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="fechaNacimiento"
             type="date"
             value={fechaNacimiento}
             onChange={(e) => setFechaNacimiento(e.target.value)}
           />
         </div>
-        <div>
-          <label>Rol:</label>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="rol">
+            Rol:
+          </label>
           <select
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="rol"
             value={rol}
             onChange={(e) => setRol(e.target.value)}
           >
@@ -144,9 +168,13 @@ const ActualizarUsuario = () => {
             ))}
           </select>
         </div>
-        <div>
-          <label>Estado:</label>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="estado">
+            Estado:
+          </label>
           <select
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="estado"
             value={estado}
             onChange={(e) => setEstado(e.target.value)}
           >
@@ -160,15 +188,26 @@ const ActualizarUsuario = () => {
             ))}
           </select>
         </div>
-        <div>
-          <label>Cliente:</label>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cliente">
+            Cliente:
+          </label>
           <input
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="cliente"
             type="number"
             value={cliente}
             onChange={(e) => setCliente(e.target.value)}
           />
         </div>
-        <button type="submit">Guardar Cambios</button>
+        <div className="flex items-center justify-between">
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          >
+            Guardar Cambios
+          </button>
+        </div>
       </form>
     </div>
   );

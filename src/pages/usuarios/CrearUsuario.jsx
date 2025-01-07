@@ -69,78 +69,112 @@ const RegistroUsuario = () => {
   }, []); // Solo se ejecuta una vez al montar el componente
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Correo Electrónico:
-        <input
-          type="email"
-          name="correo_electronico"
-          value={formData.correo_electronico}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        Nombre Completo:
-        <input
-          type="text"
-          name="nombre_completo"
-          value={formData.nombre_completo}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        Contraseña:
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        Teléfono:
-        <input
-          type="tel"
-          name="telefono"
-          value={formData.telefono}
-          onChange={handleChange}
-          required
-        />
-      </label>
-      <label>
-        Fecha de Nacimiento:
-        <input
-          type="date"
-          name="fecha_nacimiento"
-          value={formData.fecha_nacimiento}
-          onChange={handleChange}
-          required
-        />
-      </label>
-
-      {/* Agregando el selector de roles */}
-      <label>
-        Rol:
-        <select
-          name="rol_idRol"
-          value={formData.rol_idRol}
-          onChange={handleChange}
-          required
-        >
-          {roles.map((role) => (
-            <option key={role.idRol} value={role.idRol}>
-              {role.nombre}
-            </option>
-          ))}
-        </select>
-      </label>
-
-      <button type="submit">Registrar</button>
-    </form>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md">
+        <h2 className="text-2xl font-bold text-blue-500 mb-4">Registro</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="correo_electronico" className="block text-gray-700 text-sm font-bold mb-2">
+              Correo Electrónico:
+            </label>
+            <input
+              type="email"
+              id="correo_electronico"
+              name="correo_electronico"
+              value={formData.correo_electronico}
+              onChange={handleChange}
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div>
+            <label htmlFor="nombre_completo" className="block text-gray-700 text-sm font-bold mb-2">
+              Nombre Completo:
+            </label>
+            <input
+              type="text"
+              id="nombre_completo"
+              name="nombre_completo"
+              value={formData.nombre_completo}
+              onChange={handleChange}
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div>
+            <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">
+              Contraseña:
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div>
+            <label htmlFor="telefono" className="block text-gray-700 text-sm font-bold mb-2">
+              Teléfono:
+            </label>
+            <input
+              type="tel"
+              id="telefono"
+              name="telefono"
+              value={formData.telefono}
+              onChange={handleChange}
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div>
+            <label htmlFor="fecha_nacimiento" className="block text-gray-700 text-sm font-bold mb-2">
+              Fecha de Nacimiento:
+            </label>
+            <input
+              type="date"
+              id="fecha_nacimiento"
+              name="fecha_nacimiento"
+              value={formData.fecha_nacimiento}
+              onChange={handleChange}
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div>
+            <label htmlFor="rol_idRol" className="block text-gray-700 text-sm font-bold mb-2">
+              Rol:
+            </label>
+            <select
+              id="rol_idRol"
+              name="rol_idRol"
+              value={formData.rol_idRol}
+              onChange={handleChange}
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            >
+              {roles.map((role) => (
+                <option key={role.idRol} value={role.idRol}>
+                  {role.nombre}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="flex items-center justify-between">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              Registrar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
+
 
 export default RegistroUsuario;

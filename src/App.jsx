@@ -7,12 +7,14 @@ import ObtenerUsuarios from "./pages/usuarios/ObtenerUsuarios";
 import ProtectedRoute from "./ProtectedRoute";
 import ActualizarUsuario from "./pages/usuarios/ActualizarUsuario";
 import Navbar from "./components/Navbar";
+import HomeUsuario from "./pages/HomeUsuario";
+import GetProductos from "./pages/Productos/ObtenerProductos";
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <AuthProvider>
-        <Navbar />
         <Routes>
           {/* Rutas protegidas solo para OPERADOR */}
           <Route element={<ProtectedRoute allowedRoles={["OPERADOR"]} />}>
@@ -35,10 +37,10 @@ function App() {
             element={<ProtectedRoute allowedRoles={["OPERADOR", "USUARIO"]} />}
           >
             <Route path="/categoria" element={<h1>categoria</h1>} />
-            <Route path="/productos" element={<h1>Productos</h1>} />
+            <Route path="/productos" element={<GetProductos />} />
             <Route path="/ordenes" element={<h1>ordenes</h1>} />
             <Route path="/ordenes/:id" element={<h1>update ordenes</h1>} />
-            <Route path="/" element={<h1>Hello World</h1>} />
+            <Route path="/" element={<HomeUsuario />} />
           </Route>
 
           {/* Rutas públicas */}
